@@ -4,8 +4,8 @@
 #     if y >=0 and y<=R and x >=0 and y <=C:
 #         return True
 
-import sys
-sys.stdin = open('백준_10157_자리배정.txt','r')
+# import sys
+# sys.stdin = open('백준_10157_자리배정.txt','r')
 
 C, R = map(int, input().split()) # 7,6
 tl = int(input())

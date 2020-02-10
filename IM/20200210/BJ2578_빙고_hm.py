@@ -13,11 +13,11 @@ call = []
 for i in range(5):
     call += list(map(int,input().split()))
 
-print(call)
+# print(call)
 
 ch = [[0 for _ in range(5)] for __ in range(5)]
 
-print(ch)
+# print(ch)
 
 
 
@@ -45,6 +45,6 @@ for i in range(25):                             # call[i] = 사회자가 i+1번�
     if a == 5:
         cnt+=1
     
-    if cnt == 3:
+    if cnt >= 3:
         print(i+1)
         break
