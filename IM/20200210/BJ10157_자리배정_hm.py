@@ -1,3 +1,5 @@
+# 런타임에러
+
 # def isSafy (y,x):
 #     if y >=0 and y<=R and x >=0 and y <=C:
 #         return True

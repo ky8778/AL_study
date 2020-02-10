@@ -1,3 +1,5 @@
+#vs에서 되는데 틀렸습니다.
+
 import sys
 sys.stdin = open('백준_2578_빙고.txt','r')
 
