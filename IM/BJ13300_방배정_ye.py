@@ -1,23 +1,35 @@
-#자리배정
-C,R = map(int, input().split())
-pnum=int(input())
-arr=[[0 for _ in range(C)] for _ in range(R)]
-if pnum>C*R:
-    print(0)
-else:
-    dy=[-1,0,1,0]
-    dx=[0,1,0,-1]
-    tempy=R-1
-    tempx=0
-    d=0
-    i=1
-    while i<pnum:
-        arr[tempy][tempx]=-1
-        nexty=tempy+dy[d]
-        nextx=tempx+dx[d]
-        if nexty<0 or nexty>R-1 or nextx<0 or nextx>C-1 or arr[nexty][nextx]==-1:
-            d=(d+1)%4
-        tempy+=dy[d]
-        tempx+=dx[d]
-        i+=1
-    print(tempx+1, R-tempy)
+#방배정
+
+N, K = map(int, input().split())
+blist = [0 for _ in range(7)]
+glist = [0 for _ in range(7)]
+count=0
+for n in range(N):
+    s, a=map(int, input().split())
+    if s==1:#남
+        blist[a]+=1
+    else:#여
+        glist[a]+=1
+
+for t in range(1, len(blist)):
+    if blist[t] ==0 and glist[t]==0:
+        continue
+    elif blist[t]==0:
+        count += (glist[t] // K)
+        if glist[t]%K>0:
+            count+=1
+
+    elif glist[t]==0:
+        count += (blist[t] // K)
+        if blist[t] % K > 0:
+            count += 1
+    else:
+        count += (blist[t] // K) + (glist[t] // K)
+        if blist[t]%K>0:
+            count+=1
+        if glist[t]%K >0:
+            count+=1
+
+print(count)
+
+
