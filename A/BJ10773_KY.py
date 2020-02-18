@@ -11,11 +11,12 @@ for k in range(K):
         myStack.append(num)
         top+=1
     else:
-        myStack.pop()
-        top-=1
+        if top>=0:
+            myStack.pop()
+            top-=1
     
 result = 0
-while top>=0:
+while top >= 0:
     result += myStack.pop()
     top-=1
 print(result)
