@@ -1,5 +1,5 @@
 #! 2020.02.18
-# TODO https://www.acmicpc.net/problem/10773
+# TODO BJ10773_제로
 
 K = int(input())
 myStack = []
