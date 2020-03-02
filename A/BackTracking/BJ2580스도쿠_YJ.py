@@ -48,4 +48,4 @@ while q:
     Sudoku()
 
 for _ in range(len(field)):
-    print(field[_])
+    print(*field[_])
