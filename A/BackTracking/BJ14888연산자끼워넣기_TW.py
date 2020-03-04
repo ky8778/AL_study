@@ -1,6 +1,7 @@
+'''
 import sys
 sys.stdin = open('14888.txt')
-
+'''
 Oper = ['+', '-', '*', '/']
 
 
@@ -27,7 +28,10 @@ def GET() :
 
 
 def PERMUTE() :
-    if len(Stack) == N-1 : GET() ; return
+    if len(Stack) == N-1 : 
+        print(Stack)
+        GET()
+        return
 
     for i in range(4):
         if Oper_N[i] :
@@ -38,7 +42,7 @@ def PERMUTE() :
 
             Stack.pop()
             Oper_N[i] += 1
-
+    print
 
 N = int(input())
 
