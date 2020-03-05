@@ -11,7 +11,6 @@ sys.stdin = open('14889.txt', 'r')
 # 4. 비교 후 출력
 
 
-
 def TEAM_A(now) :
     global A, cnt, point, minn
 
