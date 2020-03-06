@@ -4,27 +4,34 @@ def DFS(start):
     stack = [start]
 
     while stack:
-        if len(visited)==N:
-            break
         now = stack.pop()
-
         if now not in visited:
             visited.append(now)
+
             temp = graph[now][:]
             temp.sort()
             temp.reverse()
-            stack.extend(temp)
+
+            for i in temp:
+                if i not in visited:
+                    stack.append(i)
+
     print(*visited)
 
 def BFS(start):
     visited =[]
     queue = [start]
-    
+    visited = [start]
+
     while queue:
         now = queue.pop(0)
-        if now not in visited:
-            visited.append(now)
-            queue.extend(set(graph[now]) - set(visited))
+        temp = graph[now][:]
+        temp.sort()
+
+        for i in temp:
+            if i not in visited:
+                visited.append(i)
+                queue.append(i)
 
     print(*visited)
 
