@@ -1,5 +1,6 @@
 #! 2020.03.06
 # TODO SWEA1249_보급로
+'''
 import sys
 sys.stdin = open('input.txt', 'r')
 
@@ -55,10 +56,10 @@ for tc in range(1,T+1):
     print("#{0} {1}".format(tc,getResult()))
 
 '''
+
+
 import sys
 sys.stdin = open('input.txt', 'r')
-sys.setrecursionlimit(10**6)
-
 T = int(input())
 dx = [1,0,-1,0]
 dy = [0,1,0,-1]
@@ -77,29 +78,36 @@ def isEnd(y,x):
         return False
 
 def getResult(yy,xx,sumPrice):
-    global result
-    if isEnd(yy,xx):
-        result = min(result,sumPrice)
-        return
-    
-    for dir in range(4):
-        nextY = yy+dy[dir]
-        nextX = xx+dx[dir]
-        if inRange(nextY,nextX) and not checkMap[nextY][nextX]:
-            checkMap[nextY][nextX] = True
-            sumPrice+=inData[nextY][nextX]
-            if sumPrice < result:
-                getResult(nextY,nextX,sumPrice)
-            sumPrice-=inData[nextY][nextX]
-            checkMap[nextY][nextX] = False
+    stack = []
+    stack.append([0,0,0])
+    top = 0
+    checkMap[0][0] = True
+    while stack:
+        now = stack[top]
+        cnt = 0
+        for dir in range(4):
+            nextY = now[0] + dy[dir]
+            nextX = now[1] + dx[dir]
+            if inRange(nextY,nextX) and not checkMap[nextY][nextX]:
+                price = now[2]+inData[nextY][nextX]
+                if price < DP[nextY][nextX] and price < DP[N-1][N-1]:
+                    top+=1
+                    stack.append([nextY,nextX,price])
+                    DP[nextY][nextX] = price
+                    checkMap[nextY][nextX] = True
+                    cnt+=1
+        
+        if cnt==0:
+            stack.pop()
+            checkMap[now[0]][now[1]] = False
+            top-=1
+            
+    return DP[N-1][N-1]
+                
 
 for tc in range(1,T+1):
     N = int(input())
     inData = [list(map(int,input())) for _ in range(N)]
     DP = [[INF for _ in range(N)] for _ in range(N)]
-    checkDP = [[0 for _ in range(N)] for _ in range(N)]
     checkMap = [[False for _ in range(N)] for _ in range(N)]
-    result = INF
-    getResult(0,0,0)
-    print("#{0} {1}".format(tc,result))
-'''
+    print("#{0} {1}".format(tc,getResult(0,0,0)))
