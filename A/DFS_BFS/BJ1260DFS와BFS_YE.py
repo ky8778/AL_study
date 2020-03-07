@@ -1,3 +1,4 @@
+
 #DFS와 BFS
 def DFS(start):
     visited = []
@@ -8,45 +9,35 @@ def DFS(start):
         if now not in visited:
             visited.append(now)
 
-            temp = graph[now][:]
-            temp.sort()
-            temp.reverse()
-
-            for i in temp:
-                if i not in visited:
-                    stack.append(i)
+        for t in range(N,-1,-1):
+            if graph[now][t] == 1 and t not in visited:
+                stack.append(t)
 
     print(*visited)
 
 def BFS(start):
-    visited =[]
+    # visited =[]
     queue = [start]
     visited = [start]
 
     while queue:
         now = queue.pop(0)
-        temp = graph[now][:]
-        temp.sort()
 
-        for i in temp:
-            if i not in visited:
-                visited.append(i)
-                queue.append(i)
+        for t in range(N+1):
+            if graph[now][t]==1 and t not in visited:
+                visited.append(t)
+                queue.append(t)
 
     print(*visited)
 
 N ,M , V = map(int, input().split())
-arr = [list(map(int, input().split())) for _ in range(M)]
-graph = dict()
+arr = [tuple(map(int, input().split())) for _ in range(M)]
+graph = [[0 for _ in range(N+1)] for _ in range(N+1)]
 
-#인접리스트 만들기
-for tt in range(M):
-    for i in range(2):
-        if arr[tt][i] not in graph:
-            graph[arr[tt][i]] = [arr[tt][i-1]]
-            continue
-        else :
-            graph[arr[tt][i]] += [arr[tt][i-1]]
+#인접행렬 만들기
+for x, y in arr:
+    graph[x][y] = 1
+    graph[y][x] = 1
 
 DFS(V)
 BFS(V)
